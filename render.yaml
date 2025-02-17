@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    plan: free
+    region: oregon  # Change based on your preference
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn your_project.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: your-db-name
+          property: connectionString
+      - key: SECRET_KEY
+        sync: false
