@@ -9,9 +9,9 @@ services:
       pip install -r requirements.txt
       python myproject/manage.py migrate
       python myproject/manage.py collectstatic --noinput
-    startCommand: gunicorn myproject.myproject.wsgi:application
+    startCommand: gunicorn myproject.wsgi:application
     envVars:
       - key: SECRET_KEY
         sync: false
       - key: DJANGO_SETTINGS_MODULE
-        value: myproject.myproject.settings  # ✅ Explicitly setting the correct settings path
+        value: myproject.settings  # ✅ Corrected path
