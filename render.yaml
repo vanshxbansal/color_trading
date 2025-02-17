@@ -9,7 +9,7 @@ services:
       pip install -r requirements.txt
       python myproject/manage.py migrate
       python myproject/manage.py collectstatic --noinput
-    startCommand: gunicorn myproject.wsgi:application
+    startCommand: PYTHONPATH=$(pwd)/myproject gunicorn myproject.wsgi:application
     envVars:
       - key: SECRET_KEY
         sync: false
