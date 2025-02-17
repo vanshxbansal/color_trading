@@ -13,3 +13,5 @@ services:
     envVars:
       - key: SECRET_KEY
         sync: false
+      - key: DJANGO_SETTINGS_MODULE
+        value: myproject.myproject.settings  # ✅ Explicitly setting the correct settings path
