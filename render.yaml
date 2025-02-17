@@ -4,11 +4,13 @@ services:
     env: python
     plan: free
     region: oregon
+    rootDirectory: myproject  # Set this to the folder where manage.py is located
     buildCommand: |
+      pip install --upgrade pip  # Update pip to avoid the warning
       pip install -r requirements.txt
       python manage.py migrate
       python manage.py collectstatic --noinput
-    startCommand: gunicorn your_project.wsgi:application
+    startCommand: gunicorn myproject.wsgi:application
     envVars:
       - key: SECRET_KEY
         sync: false
